@@ -92,3 +92,44 @@ struct LinkedList {
 ```
 
 
+The `length` member allows for checking the list size efficiently. In addition, we can use it modularize code by creating subroutines that can be reused. For example,
+
+``` c
+void addToEmptyList(LinkedList *list, void *data) {
+  if(list->length == 0) {
+	list->first = addItem(data, NULL, NULL);
+	list->last = list->first;
+	list->length = 1;
+  }
+}
+
+void prepend(LinkedList *list, void *data) {
+  if(list->length == 0) {
+	addToEmptyList(list, data);
+	return;
+  }
+  ListItem* second = list->first;
+  ListItem* newFirst = addItem(data, second, NULL);
+  second->prev = newFirst;
+  list->first = newFirst;
+  list->length++;
+}
+```
+
+Inside the function `prepend`, we check whether list empty and if so call `addToEmptyList`. Now, the code below can assume that the list has at least one item so we do not need worry about `list->last` pointer because we are not modifying the last item. In similar fashion, we can apply the same method for `append` where we do not modify `list->first` as follows,
+
+``` c
+void append(LinkedList *list, void *data) {
+  if(list->length == 0) {
+	addToEmptyList(list, data);
+	return;
+  }
+
+  ListItem* secondlast = list->last;
+  ListItem* newLast = addItem(data, NULL, secondlast);
+  secondlast->next = newLast;
+  list->last = newLast;
+  list->length++;
+}
+```
+
