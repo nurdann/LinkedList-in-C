@@ -133,3 +133,40 @@ void append(LinkedList *list, void *data) {
 }
 ```
 
+
+We can run example file `doublyLinkedListExample.c` and again check with `valgrind` that the heap allocated items are freed,
+
+``` c
+$ gcc -o x doublyLinkedListExample.c doublyLinkedList.c
+$ valgrind --leak-check=full ./x
+==20815== Memcheck, a memory error detector
+==20815== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==20815== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
+==20815== Command: ./x
+==20815== 
+List1 after prepends
+3 2 1  (size 3)
+1 2 3  (size 3)
+List2 after appends
+4 5 6 7 8 9 10  (size 7)
+10 9 8 7 6 5 4  (size 7)
+List1 after removing 2
+3 1  (size 2)
+After merging List1 and List2
+3 1 4 5 6 7 8 9 10  (size 9)
+10 9 8 7 6 5 4 1 3  (size 9)
+After filtering even numbers in List1
+4 6 8 10  (size 4)
+3 1 5 7 9  (size 5)
+Sum of even numbers is 28
+==20815== 
+==20815== HEAP SUMMARY:
+==20815==     in use at exit: 0 bytes in 0 blocks
+==20815==   total heap usage: 11 allocs, 11 frees, 1,264 bytes allocated
+==20815== 
+==20815== All heap blocks were freed -- no leaks are possible
+==20815== 
+==20815== For counts of detected and suppressed errors, rerun with: -v
+==20815== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+```
+
