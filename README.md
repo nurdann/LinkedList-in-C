@@ -2,7 +2,7 @@
 
 ## Singly Linked List
 
-The first approach is to a use a linked list only with next pointers. This makes it easy to implement but has higher cost especially when appending because it needs to be traversed to till the last element.
+The first approach is to a use a linked list only with next pointers. This makes it easy to implement but has higher cost especially when appending because it needs to be traversed till the last element.
 
 We can use `struct` as a wrapper to linked list so that its length can be stored. The stored data is a void pointer, so it can store pointer of any type.
 
@@ -18,7 +18,7 @@ struct LinkedList {
 };
 ```
 
-For conviniece, we can create shorthand for the struct type as shown below,
+For convenience, we can create shorthand for the struct type as shown below,
 
 ``` c
 typedef struct ListItem ListItem;
@@ -92,7 +92,7 @@ struct LinkedList {
 ```
 
 
-The `length` member allows for checking the list size efficiently. In addition, we can use it modularize code by creating subroutines that can be reused. For example,
+The `length` member allows for checking the list size efficiently. In addition, we can modularize code by creating subroutines that can be reused. For example,
 
 ``` c
 void addToEmptyList(LinkedList *list, void *data) {
@@ -116,7 +116,7 @@ void prepend(LinkedList *list, void *data) {
 }
 ```
 
-Inside the function `prepend`, we check whether list empty and if so call `addToEmptyList`. Now, the code below can assume that the list has at least one item so we do not need worry about `list->last` pointer because we are not modifying the last item. In similar fashion, we can apply the same method for `append` where we do not modify `list->first` as follows,
+Inside the function `prepend`, we check whether list empty and if so call `addToEmptyList`. Now, the code below the if-statement can assume that the list has at least one item so we do not need worry about `list->last` pointer because we are not modifying the last item. In similar fashion, we can apply the same method for `append` where we do not modify `list->first` as follows,
 
 ``` c
 void append(LinkedList *list, void *data) {
