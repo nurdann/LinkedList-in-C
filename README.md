@@ -36,6 +36,17 @@ We can use `malloc` to allocate new struct on heap so that the `struct` persists
 ``` c
 ListItem *item = malloc(sizeof(ListItem));
 ```
+Let's run example for singly linked list,
+
+``` shell
+$ gcc -g -o x singleLinkedListExample.c singleLinkedList.c
+$ ./x
+9 8 7 6 5 0 1 2 3 4  (size 10)
+6 5 0 1 2 3 4  (size 7)
+6 5 0 1  (size 4)
+6 5 1  (size 3)
+ (size 0)
+```
 
 Then, we need to make sure that whenever we remove an element from list it is removed. To help check it, we can run `valgrind` on the executable to detect possible unfreed memories.
 ```
@@ -60,3 +71,6 @@ $ valgrind --leak-check=full ./x
 ==2675== For counts of detected and suppressed errors, rerun with: -v
 ==2675== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 ```
+
+
+
