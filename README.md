@@ -72,5 +72,23 @@ $ valgrind --leak-check=full ./x
 ==2675== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 ```
 
+## Doubly Linked List
+
+For the doubly linked datastructure we need two pointers for previous and consecutive items which makes adding and removing elements from both ends have constant time complexity.
+
+The `struct` for the linked list has a length member as well as pointers to the first and last elements of the list,
+
+``` c
+struct ListItem {
+  void *data;
+  struct ListItem *next, *prev;
+};
+
+struct LinkedList {
+  struct ListItem *first;
+  struct ListItem *last;
+  size_t length;
+};
+```
 
 
