@@ -116,7 +116,7 @@ void prepend(LinkedList *list, void *data) {
 }
 ```
 
-Inside the function `prepend`, we check whether list empty and if so call `addToEmptyList`. Now, the code below the if-statement can assume that the list has at least one item so we do not need worry about `list->last` pointer because we are not modifying the last item. In similar fashion, we can apply the same method for `append` where we do not modify `list->first` as follows,
+Inside the function `prepend`, we check whether list empty and if so call `addToEmptyList`. Now, the code below the if-statement can assume that the list has at least one item so we do not need worry about `list->last` pointer because it will keep pointing to the last item. In similar fashion below, we can apply the same method for `append` where we do not modify `list->first`,
 
 ``` c
 void append(LinkedList *list, void *data) {
